@@ -1,0 +1,9 @@
+/* pages/userinfo.wxss */
+.zan-dialog--container{
+  z-index: 1;
+  top:45%
+}
+.zan-field--error {
+color:green;
+}
+

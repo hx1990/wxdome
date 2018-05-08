@@ -1,0 +1,55 @@
+<!--pages/orderinfo/orderinfo.js.wxml-->
+
+
+
+  
+  <picker mode="date" value="{{date}}" start="2018-05-02" end="2020-01-01" bindchange="bindDateChange">
+    <view class="picker">
+      选择配送日期： {{date}}
+    </view>
+  </picker>
+
+
+
+  <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+    <view class="picker">
+      选择配送时间：{{array[index]}}
+    </view>
+  </picker>
+
+
+
+
+<view wx:for="{{product}}" wx:key="{{index}}" class="zan-panel">
+    <view class="zan-card">
+      <view class="zan-card__thumb">
+        <image class="zan-card__img"
+          src="https://yizhengyilong.xyz{{item.src}}"
+          mode="aspectFit"
+        ></image>
+      </view>
+      <view class="zan-card__detail">
+        <view class="zan-card__detail-row">
+          <view class="zan-card__right-col">¥ {{item.price}}</view>
+          <view class="zan-card__left-col zan-ellipsis--l2">
+             {{item.name}}
+          </view>
+        </view>
+
+        <view class="zan-card__detail-row zan-c-gray-darker">
+          <view class="zan-card__right-col">x{{item.stepper.stepper}}</view>
+          <view class="zan-card__left-col">
+            {{item.details}}
+          </view>
+        </view>
+
+        <view class="zan-card__detail-row zan-c-gray-darker">
+          <view class="zan-card__left-col zan-c-red">待发货</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view>合计：{{totalPrice}}</view>
+  <view></view>
+  <view>{{address}} {{name}}  {{phone}}</view>
+  <button bindtap="submitOrderinfo">支付</button>

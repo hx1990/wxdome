@@ -1,0 +1,16 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/detail/detail",
+    "pages/userinfo/userinfo",
+    "pages/orderinfo/orderinfo"
+    
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "一笼一蒸",
+    "navigationBarTextStyle": "black"
+  }
+  
+}
