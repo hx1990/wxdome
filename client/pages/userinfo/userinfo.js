@@ -1,16 +1,16 @@
 // pages/userinfo.js
 const Zan = require('../../dist/index')
-const log=console.log.bind(console)
-Page(Object.assign({}, Zan.Dialog, Zan.Select, Zan.TopTips,Zan.Field,{
+const log = console.log.bind(console)
+Page(Object.assign({}, Zan.Dialog, Zan.Select, Zan.TopTips, Zan.Field, {
   data: {
-    wxname:'',
-    name:'',
-    address1:'',
+    wxname: '',
+    name: '',
+    address1: '',
     address2: '',
-    phone:'',
+    phone: '',
     base: {
       name: {
-        componentId:1,
+        componentId: 1,
         focus: true,
         title: '收货人',
         placeholder: '名字'
@@ -31,27 +31,27 @@ Page(Object.assign({}, Zan.Dialog, Zan.Select, Zan.TopTips,Zan.Field,{
     },
     items: [
     ],
-    index:0,
+    index: 0,
   },
 
-  onLoad(ev){
+  onLoad(ev) {
     this.setData({
       wxname: ev.wxname
     })
-   let that=this
-   wx.request({
-     url: 'https://yizhengyilong.xyz/xiaoqulist',
-     success(res){
-       const xiaoqu=[]
-       for(let i=0;i<res.data.length;i++){
-         let d = res.data[i]
-         xiaoqu.push(d.name)
-       }
-       that.setData({
-         items: xiaoqu
-       })
-     }
-   })
+    let that = this
+    wx.request({
+      url: 'https://yizhengyilong.xyz/xiaoqulist',
+      success(res) {
+        const xiaoqu = []
+        for (let i = 0; i < res.data.length; i++) {
+          let d = res.data[i]
+          xiaoqu.push(d.name)
+        }
+        that.setData({
+          items: xiaoqu
+        })
+      }
+    })
   },
 
   bindPickerChange: function (e) {
@@ -59,28 +59,28 @@ Page(Object.assign({}, Zan.Dialog, Zan.Select, Zan.TopTips,Zan.Field,{
       index: e.detail.value,
       address1: this.data.items[this.data.index]
     })
-    log(this.data.address1,e)
+    log(this.data.address1, e)
   },
   handleZanFieldBlur(e) {
     const { componentId, detail } = e;
-    if (componentId==1){
+    if (componentId == 1) {
       this.setData({
         name: e.detail.value
       })
-    } else if (componentId == 2){
+    } else if (componentId == 2) {
       this.setData({
-        phone: ''+e.detail.value
+        phone: '' + e.detail.value
       })
-    } else if (componentId == 3){
+    } else if (componentId == 3) {
       this.setData({
         address2: e.detail.value
       })
     }
   },
-  submitdata(){
-    const that=this
+  submitdata() {
+    const that = this
     wx.request({
-      url: 'https://yizhengyilong.xyz/userinfo', 
+      url: 'https://yizhengyilong.xyz/userinfo',
       data: {
         wxname: that.data.wxname,
         name: that.data.name,
@@ -89,20 +89,20 @@ Page(Object.assign({}, Zan.Dialog, Zan.Select, Zan.TopTips,Zan.Field,{
       },
       method: 'POST',
       header: {
-        'content-type': 'application/x-www-form-urlencoded' 
+        'content-type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
         wx.reLaunch({
           url: '../orderinfo/orderinfo',
-          success(re){
-            log('成功跳转',res,re)
+          success(re) {
+            log('成功跳转', res, re)
           },
         })
       }
     })
   },
   toggleVerticalDialog() {
-    const that=this
+    const that = this
     this.showZanDialog({
       title: '收货信息',
       content: '确认收货信息',
@@ -126,12 +126,12 @@ Page(Object.assign({}, Zan.Dialog, Zan.Select, Zan.TopTips,Zan.Field,{
         color: 'blue',
         type: 'confirm'
       },
-       {
+      {
         text: '取消',
         type: 'cancel'
       }]
     }).then(({ type }) => {
-      if (type=='confirm'){
+      if (type == 'confirm') {
         that.submitdata()
       }
     });

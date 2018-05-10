@@ -5,20 +5,20 @@
 <import src="/dist/dialog/index.wxml" />
 
 <view class="zan-panel-title">添加用户信息</view>
-  <view class="zan-panel">
-    <template is="zan-field" data="{{ ...base.name, value }}"></template>
-    <template is="zan-field" data="{{ ...base.tel }}"></template>
-    
-    <picker class="zan-cell zan-field" bindchange="bindPickerChange" value="{{index}}" range="{{items}}">
-      <view class="picker">
-        选择小区：{{items[index]}}
-      </view>
-    </picker>
+<view class="zan-panel">
+  <template is="zan-field" data="{{ ...base.name, value }}"></template>
+  <template is="zan-field" data="{{ ...base.tel }}"></template>
 
-    <template is="zan-field" data="{{ ...base.address }}"></template>
-  </view>
-  <view class="zan-btns">
-    <button class="zan-btn zan-btn--primary" bindtap="toggleVerticalDialog" >提交数据</button>
-  </view>
+  <picker class="zan-cell zan-field" bindchange="bindPickerChange" value="{{index}}" range="{{items}}">
+    <view class="picker">
+      选择小区：{{items[index]}}
+    </view>
+  </picker>
+
+  <template is="zan-field" data="{{ ...base.address }}"></template>
+</view>
+<view class="zan-btns">
+  <button class="zan-btn zan-btn--primary" bindtap="toggleVerticalDialog">提交数据</button>
+</view>
 
 <template is="zan-dialog" data="{{ zanDialog }}"></template>
